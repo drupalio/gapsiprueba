@@ -6,11 +6,10 @@ spring:
       hibernate:
         jdbc:
           lob:
-            non_contextual_creation: 'true'
-    show-sql: 'true'
+            non_contextual_creation: true
+    show-sql: true
     hibernate:
       ddl-auto: update
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
   datasource:
     password: challenge
     driver-class-name: org.postgresql.Driver
