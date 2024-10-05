@@ -16,10 +16,11 @@ spring:
       ddl-auto: update
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   datasource:
+
     password: challenge
     driver-class-name: org.postgresql.Driver
     username: challenge
-    url: jdbc:postgresql://34.172.228.204:5432/challenge?sslmode=disable&connect_timeout=5
+    url: jdbc:postgresql://34.172.228.204:5432/postgres?sslmode=disable&connect_timeout=5&user=postgres
   sql:
     init:
       mode: 'always   '
