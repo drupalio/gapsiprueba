@@ -16,6 +16,9 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['run', '-d', '--name', 'challenge', '--link', 'postgresql:postgres', '-e', 'SPRING_APPLICATION_JSON={"spring.datasource.url":"jdbc:postgresql://postgres:5432/${_DB_DATABASE}?sslmode=disable&connect_timeout=5","spring.datasource.username":"challenge","spring.datasource.password":"challenge","spring.jpa.hibernate.ddl-auto":"update"}', '-p', '${_SPRING_LOCAL_PORT}:${_SPRING_DOCKER_PORT}', 'gcr.io/$PROJECT_ID/challenge']
 
+options:
+  logging: 'NONE'
+
 substitutions:
   _DB_USER: 'challenge'
   _DB_ROOT_PASSWORD: 'challenge'
