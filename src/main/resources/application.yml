@@ -1,4 +1,8 @@
 spring:
+  cloud:
+    gcp:
+      sql:
+        instance-connection-name:sublime-index-437717-v1:us-central1:challenge
   application:
     name: challenge
   jpa:
@@ -15,7 +19,7 @@ spring:
     password: challenge
     driver-class-name: org.postgresql.Driver
     username: challenge
-    url: jdbc:postgresql://127.0.0.1:5432/challenge?sslmode=disable&connect_timeout=5
+    url: jdbc:postgresql://34.172.228.204:5432/challenge?sslmode=disable&connect_timeout=5
   sql:
     init:
       mode: 'always   '
