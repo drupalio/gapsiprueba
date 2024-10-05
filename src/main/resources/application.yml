@@ -12,18 +12,15 @@ spring:
       ddl-auto: update
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql:///postgres
-    username: postgres
     password: challenge
-    hikari:
-      minimum-idle: 2
-      maximum-pool-size: 5
-      data-source-properties:
-        socketFactory: com.google.cloud.sql.postgres.SocketFactory
-        cloudSqlInstance: sublime-index-437717-v1:us-central1:challenge
-        enableIamAuth: true
-        sslmode: disable
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    url: jdbc:postgresql://34.172.228.204/postgres?sslmode=disable&connect_timeout=5
+  cloud:
+    gcp:
+      sql:
+        database-name: postgres
+        instance-connection-name: sublime-index-437717-v1:us-central1:challenge
   sql:
     init:
       mode: always
