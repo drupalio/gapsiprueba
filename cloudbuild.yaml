@@ -1,0 +1,28 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/challenge', '.']
+    env:
+      - 'DB_USER=${_DB_USER}'
+      - 'DB_ROOT_PASSWORD=${_DB_ROOT_PASSWORD}'
+      - 'DB_DATABASE=${_DB_DATABASE}'
+      - 'SPRING_LOCAL_PORT=${_SPRING_LOCAL_PORT}'
+      - 'SPRING_DOCKER_PORT=${_SPRING_DOCKER_PORT}'
+      - 'JWT_SECRET=${_JWT_SECRET}'
+      - 'JWT_EXPIRATION=${_JWT_EXPIRATION}'
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['run', '-d', '--name', 'postgresql', '-e', 'POSTGRES_USER=${_DB_USER}', '-e', 'POSTGRES_PASSWORD=${_DB_ROOT_PASSWORD}', '-v', '/data:/var/lib/postgresql/data', '-p', '${_DB_DOCKER_PORT}:${_DB_DOCKER_PORT}', 'postgres']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['run', '-d', '--name', 'challenge', '--link', 'postgresql:postgres', '-e', 'SPRING_APPLICATION_JSON={"spring.datasource.url":"jdbc:postgresql://postgres:5432/${_DB_DATABASE}?sslmode=disable&connect_timeout=5","spring.datasource.username":"challenge","spring.datasource.password":"challenge","spring.jpa.hibernate.ddl-auto":"update"}', '-p', '${_SPRING_LOCAL_PORT}:${_SPRING_DOCKER_PORT}', 'gcr.io/$PROJECT_ID/challenge']
+
+substitutions:
+  _DB_USER: 'challenge'
+  _DB_ROOT_PASSWORD: 'challenge'
+  _DB_DATABASE: 'challenge'
+  _DB_LOCAL_PORT: '5432'
+  _DB_DOCKER_PORT: '5432'
+  _SPRING_LOCAL_PORT: '6868'
+  _SPRING_DOCKER_PORT: '8080'
+  _JWT_SECRET: '5A7B3C4D5E6F7A8B9C0D1E2F3A4B5C6D7E8F9A0B1C2D3E4F5A6B7C8D9E0F1'
+  _JWT_EXPIRATION: '1h'
