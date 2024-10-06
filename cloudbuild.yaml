@@ -17,9 +17,9 @@ options:
   logging: 'NONE'
 
 substitutions:
-  _DB_USER: 'challenge'
+  _DB_USER: 'postgres'
   _DB_ROOT_PASSWORD: 'challenge'
-  _DB_DATABASE: 'challenge'
+  _DB_DATABASE: 'postgres'
   _SPRING_LOCAL_PORT: '8080'
   _SPRING_DOCKER_PORT: '8080'
   _JWT_SECRET: '5A7B3C4D5E6F7A8B9C0D1E2F3A4B5C6D7E8F9A0B1C2D3E4F5A6B7C8D9E0F1'
