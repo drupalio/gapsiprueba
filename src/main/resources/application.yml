@@ -4,6 +4,7 @@ spring:
   jpa:
     properties:
       hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL10Dialect
         jdbc:
           lob:
             non_contextual_creation: true
@@ -20,8 +21,8 @@ spring:
       maximum-pool-size: 5
       data-source-properties:
         socketFactory: com.google.cloud.sql.postgres.SocketFactory
-        cloudSqlInstance:
-        enableIamAuth: true
+        cloudSqlInstance: sublime-index-437717-v1:us-central1:challenge
+        enableIamAuth: false
         sslmode: disable
 
   sql:
